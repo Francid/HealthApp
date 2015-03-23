@@ -1,0 +1,58 @@
+<form class="form-horizontal" name="registerForm" ng-submit="register(doctor)" novalidate>
+  <fieldset>
+    <div id="legend">
+      <legend class="">Register</legend>
+    </div>
+    <div class="control-group">
+      <!-- Username -->
+      <label class="control-label"  for="fullname">Fullname</label>
+      <span style="color:red" ng-show="registerForm.fullname.$pristine && registerForm.fullname.$invalid">*</span>
+      <div class="controls">
+        <input type="text" id="fullname" name="fullname" placeholder="" class="form-control" ng-model="doctor.fullname" required>  
+      </div>
+    </div>
+    <div class="control-group">
+      <!-- Username -->
+      <label class="control-label"  for="username">Username</label>
+      <span style="color:red" ng-show="registerForm.username.$pristine && registerForm.username.$invalid">*</span>
+      <div class="controls">
+        <input type="text" id="username" name="username" placeholder="" class="form-control" ng-model="doctor.username" required>
+      </div>
+    </div>
+ 
+    <div class="control-group">
+      <!-- E-mail -->
+      <label class="control-label" for="email">E-mail</label>
+      <span style="color:red" ng-show="registerForm.email.$pristine && registerForm.email.$invalid">*</span>
+      <span style="color:red" ng-show="registerForm.email.$error.email">Invalid email address.</span>
+      <div class="controls">
+        <input type="email" id="email" name="email" placeholder="" class="form-control" ng-model="doctor.email" required>
+      </div>
+    </div>
+ 
+    <div class="control-group">
+      <!-- Password-->
+      <label class="control-label" for="password">Password</label>
+      <span style="color:red" ng-show="registerForm.password.$pristine && registerForm.password.$invalid">*</span>
+      <div class="controls">
+        <input type="password" id="password" name="password" placeholder="" class="form-control" ng-model="doctor.password" required>
+      </div>
+    </div>
+ 
+    <div class="control-group">
+      <!-- Password -->
+      <label class="control-label"  for="password_confirm">Password (Confirm)</label>
+      <span style="color:red" ng-show="registerForm.password_confirm.$pristine && registerForm.password_confirm.$invalid">*</span>
+      <div class="controls">
+        <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="form-control" required>
+      </div>
+    </div>
+ 
+    <div class="control-group">
+      <!-- Button -->
+      <div class="controls">
+        <button class="btn btn-primary">Register</button>
+      </div>
+    </div>
+  </fieldset>
+</form>

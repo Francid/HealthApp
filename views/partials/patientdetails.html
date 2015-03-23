@@ -1,0 +1,58 @@
+<form class="form-horizontal" name="patientForm" ng-submit="register(patient)" novalidate>
+  <fieldset>
+    <div id="legend">
+      <legend class="">Register Patient</legend>
+    </div>
+    <div class="control-group">
+      <label class="control-label"  for="firstname">First Name</label>
+      <span style="color:red" ng-show="patientForm.firstname.$pristine && patientForm.firstname.$invalid">*</span>
+      <div class="controls">
+        <input type="text" ng-model="patient.firstname" name="firstname" placeholder="" class="form-control"  required>  
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label"  for="lastname">Last Name</label>
+      <span style="color:red" ng-show="patientForm.lastname.$pristine && patientForm.lastname.$invalid">*</span>
+      <div class="controls">
+        <input type="text" name="lastname" placeholder="" class="form-control" ng-model="patient.lastname" required>
+      </div>
+    </div>
+ 
+    <div class="control-group">
+      <label class="control-label" for="email">E-mail</label>
+      <span style="color:red" ng-show="patientForm.email.$pristine && patientForm.email.$invalid">*</span>
+      <span style="color:red" ng-show="patientForm.email.$error.email">Invalid email address.</span>
+      <div class="controls">
+        <input type="text" id="email" ng-model="patient.email" name="email" placeholder="" class="form-control"  required>
+      </div>
+    </div>
+ 
+    <div class="control-group">
+      <label class="control-label"  for="age">Age</label>
+      <span style="color:red" ng-show="patientForm.age.$pristine && patientForm.age.$invalid">*</span>
+      <div class="controls">
+        <input type="text" ng-model="patient.age" name="age" placeholder="" class="form-control"  required>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label"  for="doctor">Family Doctor</label>
+      <span style="color:red" ng-show="patientForm.doctor.$pristine && patientForm.doctor.$invalid">*</span>
+      <div class="controls">
+        <select class="form-control" ng-model="patient.doctor" name="doctor" required>
+          <option disabled selected>Choose Status</option>
+          <option disabled>{{patient.Status}}</option>
+          <option value="Active">Active</option>
+          <option value="InActive ">InActive</option>
+        </select>
+      </div>
+    </div>
+ 
+    <div class="control-group">
+      <!-- Button -->
+      <div class="controls">
+        <button class="btn btn-primary">Register</button>
+      </div>
+    </div>
+  </fieldset>
+</form>

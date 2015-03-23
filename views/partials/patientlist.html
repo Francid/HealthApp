@@ -1,0 +1,14 @@
+<h2 class="text-center"> Patient List </h2>
+        <br>
+        <table id="patientList" class="table table-striped table-hover">
+            <tr ng-repeat="patient in patientModel" ng-click="selectedPatient(patient)">
+                <td>{{patient.firstname}}</td>
+                <td>{{patient.lastname}}<td>
+            </tr>
+        </table>
+
+        <a href="#patientdetails">
+            <button class="btn btn-primary btn-lg" ng-click="clearForm()">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Patient
+            </button>
+        </a>
