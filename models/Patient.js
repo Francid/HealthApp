@@ -10,7 +10,7 @@ var patientSchema = new mongoose.Schema({
 		billingAmount: Number
 	},
 	age: Number,
-	familyDoctor: [Doctor],
+	familyDoctor: String,
 	createdAt: Date,
 	lastModified: Date
 })

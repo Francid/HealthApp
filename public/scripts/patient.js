@@ -1,14 +1,19 @@
-app.controller('patientDetailsCtrl', function($scope, patientService){
-
+app.controller('patientDetailsCtrl', function($scope, $location, patientService, doctorService){
 	$scope.patient = {}
 
     $scope.patient.firstname = patientService.getPatientDetails().firstname
     $scope.patient.lastname = patientService.getPatientDetails().lastname
-    $scope.patient.email = patientService.getPatientDetails().email
     $scope.patient.age = patientService.getPatientDetails().age
+    $scope.patient.doctor = patientService.getPatientDetails().familyDoctor
+    console.log(patientService.getPatientDetails().familyDoctor)
+
+    doctorService.getDoctors().success(function(data){
+		$scope.doctorModel = data
+	})
 
     $scope.register = function(data){
 		patientService.save(data)
+		$location.path('/patientlist')
 	}
 
 	$scope.clearForm = function(){
@@ -19,13 +24,12 @@ app.controller('patientDetailsCtrl', function($scope, patientService){
 app.controller('patientListCtrl', function($scope, $location, patientService){
 
 	patientService.getPatients().success(function(data){
-		$scope.patientModel = data
+		$scope.patientList = data
 	})
 
 	 $scope.selectedPatient = function (patient) {
         $location.path('/patientdetails')
         patientService.setPatientDetails(patient)
-        console.log(patient.firstname)
     };	
 })
 

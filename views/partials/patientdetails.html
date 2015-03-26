@@ -19,19 +19,10 @@
     </div>
  
     <div class="control-group">
-      <label class="control-label" for="email">E-mail</label>
-      <span style="color:red" ng-show="patientForm.email.$pristine && patientForm.email.$invalid">*</span>
-      <span style="color:red" ng-show="patientForm.email.$error.email">Invalid email address.</span>
-      <div class="controls">
-        <input type="text" id="email" ng-model="patient.email" name="email" placeholder="" class="form-control"  required>
-      </div>
-    </div>
- 
-    <div class="control-group">
       <label class="control-label"  for="age">Age</label>
       <span style="color:red" ng-show="patientForm.age.$pristine && patientForm.age.$invalid">*</span>
       <div class="controls">
-        <input type="text" ng-model="patient.age" name="age" placeholder="" class="form-control"  required>
+        <input type="number" ng-model="patient.age" name="age" placeholder="" class="form-control"  required>
       </div>
     </div>
 
@@ -39,15 +30,11 @@
       <label class="control-label"  for="doctor">Family Doctor</label>
       <span style="color:red" ng-show="patientForm.doctor.$pristine && patientForm.doctor.$invalid">*</span>
       <div class="controls">
-        <select class="form-control" ng-model="patient.doctor" name="doctor" required>
-          <option disabled selected>Choose Status</option>
-          <option disabled>{{patient.Status}}</option>
-          <option value="Active">Active</option>
-          <option value="InActive ">InActive</option>
+        <select class="form-control" ng-model="patient.doctor" ng-options="doctor.fullname for doctor in doctorModel" required>
+          <option selected="selected">{{doctor.fullname}}</option>
         </select>
       </div>
     </div>
- 
     <div class="control-group">
       <!-- Button -->
       <div class="controls">

@@ -17,6 +17,7 @@ app.use(express.static(__dirname + '/public/scripts/'))
 app.use(express.static(__dirname + '/views'))
 app.use(express.static(__dirname + '/views/partials/'))
 app.use(bodyParser.json())
+app.locals.pretty = true;
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -45,15 +46,25 @@ app.post('/doctor', function(req, res){
 	})
 })
 
+app.get('/getdoctors', function(req, res){
+	console.log("get doctors")
+	Doctor.find(function(err,doctors){
+		if(err)
+			console.log(err)
+		else
+			return res.json(doctors)
+	})
+})
+
 app.post('/patient', function(req, res){
 	console.log("post patient")
 	var patient = new Patient({
 		"firstname" : req.body.firstname,
 		"lastname" : req.body.lastname,
-		"email" : req.body.email,
+		"familyDoctor" : req.body.doctor,
 		"age" : req.body.age
 	})
-	console.log(req.body.fullname)
+	console.log(req.body.doctor)
 	patient.save(function(err){
 		if(err)
 			console.log(err)
