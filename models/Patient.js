@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 var Doctor = require('./Doctor')
 
 var patientSchema = new mongoose.Schema({
-	ID : Number,
 	firstname: String,
 	lastname: String,
 	visits:{

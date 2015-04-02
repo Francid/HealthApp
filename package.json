@@ -5,7 +5,7 @@
   "dependencies": {
     "express": "4.12.2",
     "jade": "*",
-    "mongoose": "*",
+    "mongoose": "latest",
     "passport": "*",
     "passport-local": "*",
     "connect-flash": "*",

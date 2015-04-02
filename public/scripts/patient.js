@@ -1,6 +1,7 @@
 app.controller('patientDetailsCtrl', function($scope, $location, patientService, doctorService){
 	$scope.patient = {}
 
+    $scope.patient._id = patientService.getPatientDetails()._id
     $scope.patient.firstname = patientService.getPatientDetails().firstname
     $scope.patient.lastname = patientService.getPatientDetails().lastname
     $scope.patient.age = patientService.getPatientDetails().age

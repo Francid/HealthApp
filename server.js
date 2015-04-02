@@ -11,7 +11,6 @@ var url = require('url')
 var app = express()
 mongoose.connect('mongodb://localhost:27017/test')
 
-//app.use(logger('combined'))
 
 app.use(express.static(__dirname + '/public/stylesheets/'))
 app.use(express.static(__dirname + '/public/scripts/'))
@@ -60,30 +59,9 @@ app.get('/getdoctors', function(req, res){
 })
 
 app.post('/patient', function(req, res){
-	console.log("new patient posted")
-	var patient = new Patient({
-		"firstname" : req.body.firstname,
-		"lastname" : req.body.lastname,
-		"familyDoctor" : req.body.familyDoctor,
-		"age" : req.body.age
-	})
+	var p = new Patient(req.body);
 
-	Patient.find({firstname: req.body.firstname, lastname: req.body.lastname}, function(err,patients){
-		if(patients.length <= 0){
-			patient.save(function(err){
-				if(err){
-					res.status(409).send('Duplicate record')
-					console.log(err)
-				}
-				else
-					console.log("Patient: "+req.body.firstname+" "+req.body.lastname+"record created")
-			})
-		}else{
-			Patient.update({firstname: req.body.firstname, lastname: req.body.lastname},{firstname: req.body.firstname, lastname: req.body.lastname, age: req.body.age, familyDoctor: req.body.familyDoctor},function(err,affected) {
-  				res.status(200).send("record updated")
-			});
-			console.log('update')
-		}
+	Patient.findOneAndUpdate({_id: p._id},p,{upsert:true}, function(err,patients){
 	})
 })
 
