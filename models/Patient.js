@@ -4,13 +4,13 @@ var Doctor = require('./Doctor')
 var patientSchema = new mongoose.Schema({
 	firstname: String,
 	lastname: String,
-	visits:{
+	visits:[{
 		complaint: String,
 		billingAmount: Number
-	},
+	}],
 	age: Number,
 	familyDoctor: String,
-	createdAt: Date,
+	createdAt: {type: Date, default: Date.now},
 	lastModified: Date
 })
 patientSchema.set('autoindex', false)

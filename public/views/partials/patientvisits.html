@@ -1,0 +1,27 @@
+<form class="form-horizontal" name="patientVisits" ng-submit="registerVisit(patientVisits)" novalidate>
+  <fieldset>
+    <div id="legend">
+      <legend class="">Register Visit</legend>
+    </div>
+    <div class="control-group">
+      <label class="control-label"  for="complaint">Complaint</label>
+      <span style="color:red" ng-show="patientVisits.complaint.$pristine && patientVisits.complaint.$invalid">*</span>
+      <div class="controls">
+        <input type="text" ng-model="patientVisits.complaint" name="complaint" placeholder="" class="form-control"  required>  
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="complaint">Billing Amount</label>
+      <span style="color:red" ng-show="patientVisits.billingAmount.$pristine && patientVisits.billingAmount.$invalid">*</span>
+      <div class="controls">
+        <input type="number" name="complaint" placeholder="" class="form-control" ng-model="patientVisits.billingAmount" required>
+      </div>
+    </div>
+    <div class="control-group">
+      <!-- Button -->
+      <div class="controls">
+        <button class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </fieldset>
+</form>

@@ -14,8 +14,8 @@ mongoose.connect('mongodb://localhost:27017/test')
 
 app.use(express.static(__dirname + '/public/stylesheets/'))
 app.use(express.static(__dirname + '/public/scripts/'))
-app.use(express.static(__dirname + '/views'))
-app.use(express.static(__dirname + '/views/partials/'))
+app.use(express.static(__dirname + '/public/views'))
+app.use(express.static(__dirname + '/public/views/partials/'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.locals.pretty = true;
@@ -59,10 +59,31 @@ app.get('/getdoctors', function(req, res){
 })
 
 app.post('/patient', function(req, res){
+	console.log(req.body)
 	var p = new Patient(req.body);
-
+	p.visits = req.body.visits
+	p.lastModified = Date.now()
 	Patient.findOneAndUpdate({_id: p._id},p,{upsert:true}, function(err,patients){
 	})
+})
+
+app.post('/visit', function(req, res){
+	Patient.findOne({_id: req.body.patientID}, function(err, patients){
+		
+		patients.visits.push({complaint: req.body.complaint, billingAmount: req.body.billingAmount})
+		console.log(patients)
+		patients.save(function(err, item){})
+	})
+	//var p = new Patient()
+	//p.visit.push({compliant:req.body.complaint, billingAmount: req.body.billingAmount })
+})
+
+app.get('/visits/:patientID', function(req, res){
+	console.log(req.params.patientID)
+	Patient.find({ _id: req.params.patientID},{'visits.complaint':1, 'visits.billingAmount':1, '_id':0},function (err, patients) {
+            res.json(patients)
+    })
+
 })
 
 app.get('/patients', function(req, res){

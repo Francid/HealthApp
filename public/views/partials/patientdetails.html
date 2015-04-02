@@ -1,4 +1,4 @@
-<form class="form-horizontal" name="patientForm" ng-submit="register(patient) &&clearForm()" novalidate>
+<form class="form-horizontal" name="patientForm" novalidate>
   <fieldset>
     <div id="legend">
       <legend class="">Register Patient</legend>
@@ -35,10 +35,48 @@
         </select>
       </div>
     </div>
+
+    <div class="control-group">
+      <label class="control-label"  for="createdAt">CreatedAt</label>
+      <div class="controls">
+        <input ng-disabled="true" type="text" ng-model="patient.createdAt" name="createdAt" placeholder="" class="form-control">
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label"  for="lastModified">Last Modified At</label>
+      <div class="controls">
+        <input ng-disabled="true" type="text" ng-model="patient.lastModified" name="lastModified" placeholder="" class="form-control">
+      </div>
+    </div>
+    <br />
+    <div class="control-group" ng-show="edit===true">
+      <table id="patientVisits" class="table table-striped table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Complaint</th>
+                    <th>Billing Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="patient in patientVisits">
+                <td>{{patient.complaint}}</td>
+                <td>{{patient.billingAmount}}</td>
+              </tr>
+            </tbody>
+      </table>
+        
+        <div class="control-group">
+          <div class="controls">
+            <button class="btn btn-primary" ng-click="visit(patient._id)">New Visit</button>
+          </div>
+        </div>
+    </div>
+      <br />
     <div class="control-group">
       <!-- Button -->
       <div class="controls">
-        <button class="btn btn-primary">Save</button>
+        <button class="btn btn-primary" ng-click="register(patient, patientVisits) &&clearForm()">Save</button>
       </div>
     </div>
   </fieldset>

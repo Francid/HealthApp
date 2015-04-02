@@ -28,7 +28,7 @@
                 <td>{{patient.firstname}}</td>
                 <td>{{patient.lastname}}</td>
                 <td>{{patient.familyDoctor}}</td>
-                <td><button class="btn btn-primary glyphicon glyphicon-edit" ng-click="selectedPatient(patient)"> Edit</button><button class="btn btn-danger glyphicon glyphicon-remove pad" ng-click="deletePatient(patient)"> Delete</button></td>
+                <td><button class="btn btn-primary glyphicon glyphicon-edit" ng-click="selectedPatient(patient); enable()"> Edit</button><button class="btn btn-danger glyphicon glyphicon-remove pad" ng-click="deletePatient(patient)"> Delete</button></td>
             </tr>
         </tbody>
         </table>
