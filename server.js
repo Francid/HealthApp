@@ -60,7 +60,7 @@ app.get('/getdoctors', function(req, res){
 
 app.post('/patient', function(req, res){
 	console.log(req.body)
-	var p = new Patient(req.body);
+	var p = new Patient(req.body.data);
 	p.visits = req.body.visits
 	p.lastModified = Date.now()
 	Patient.findOneAndUpdate({_id: p._id},p,{upsert:true}, function(err,patients){
@@ -83,7 +83,6 @@ app.get('/visits/:patientID', function(req, res){
 	Patient.find({ _id: req.params.patientID},{'visits.complaint':1, 'visits.billingAmount':1, '_id':0},function (err, patients) {
             res.json(patients)
     })
-
 })
 
 app.get('/patients', function(req, res){

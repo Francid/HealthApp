@@ -12,13 +12,12 @@ app.controller('patientDetailsCtrl', function($scope, $location, $rootScope, pat
     $scope.patientVisits = {}
 
     $scope.patientVisits.complaint = patientService.getVisits().complaint
-    $scope.patientVisits.billingAmount = 
+    $scope.patientVisits.billingAmount = patientService.getVisits().billingAmount
+
 
     doctorService.getDoctors().success(function(data){
 		$scope.doctorModel = data
 	})
-
-    console.log($scope.patient._id)
 
     $scope.register = function(data, visits){
         var object ={
@@ -40,9 +39,7 @@ app.controller('patientDetailsCtrl', function($scope, $location, $rootScope, pat
     }
 
     patientService.getVisits($scope.patient._id).success(function(data){
-        console.log(data[0].visits)
         $scope.patientVisits = data[0].visits
-        //console.log
     })
 
 })
@@ -53,7 +50,7 @@ app.controller('patientVisitCtrl', function($scope, $location, patientService){
     $scope.registerVisit = function(data){
         patientService.visit(data, patientService.getPatientDetails()._id).error(function(data, error){
         })
-        console.log(data)
+        //console.log(data)
         $location.path('/patientlist')
     }
 
