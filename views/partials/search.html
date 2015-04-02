@@ -1,14 +1,14 @@
 <h2 class="text-center"> Patient List </h2>
         <br>
-        <form>
+        <form >
     <div class="form-group">
       <div class="input-group">
         <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
-        <input type="text" class="form-control" placeholder="Search for Patient or Doctor" ng-model="searchValue">
+        <input type="text" class="form-control" placeholder="Search for Patient or Doctor" ng-model="searchValue" ng-keyup="searchLastName(searchValue)">
       </div>      
     </div>
   </form>
-        <table id="patientList" class="table table-striped table-hover table-bordered">
+  <table id="patientList" class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
                     <th>
@@ -19,15 +19,12 @@
                         </a>
                     </th>
                     <th>Patient Last Name</th>
-                    <th>Doctor Name</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="patient in filteredList = (patientList | filter:searchValue) | orderBy:sortType:sortReverse | startFrom:currentPage*pageSize | limitTo:pageSize">
+            <tr ng-repeat="patient in FilteredList = (search | filter:searchValue) | orderBy:sortType:sortReverse | startFrom:currentPage*pageSize | limitTo:pageSize">
                 <td>{{patient.firstname}}</td>
                 <td>{{patient.lastname}}</td>
-                <td>{{patient.familyDoctor}}</td>
                 <td><button class="btn btn-primary glyphicon glyphicon-edit" ng-click="selectedPatient(patient)"> Edit</button><button class="btn btn-danger glyphicon glyphicon-remove pad" ng-click="deletePatient(patient)"> Delete</button></td>
             </tr>
         </tbody>
@@ -43,12 +40,4 @@
                 Next
             </button>
         </div>
-        </div>
-        <br />
-        <div>
-            <a href="#patientdetails">
-                <button class="btn btn-primary btn-lg" ng-click="clearForm()">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Patient
-                </button>
-            </a>
         </div>

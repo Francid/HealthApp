@@ -20,6 +20,10 @@ app.config(['$routeProvider',
             templateUrl: 'patientlist.html',
             controller: 'patientListCtrl'
         }).
+        when('/search', {
+            templateUrl: 'search.html',
+            controller: 'patientListCtrl'
+        }).
         otherwise({
             redirectTo: '/home'
         });

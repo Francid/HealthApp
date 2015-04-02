@@ -6,3 +6,15 @@ body {
 .navbar {
   margin-bottom: 20px;
 }
+
+.pad{
+	margin-left: 5px;
+}
+
+table{
+	table-layout: fixed;
+}
+
+td,th{
+	text-align: center;
+}

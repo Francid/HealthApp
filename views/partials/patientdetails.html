@@ -1,4 +1,4 @@
-<form class="form-horizontal" name="patientForm" ng-submit="register(patient)" novalidate>
+<form class="form-horizontal" name="patientForm" ng-submit="register(patient) &&clearForm()" novalidate>
   <fieldset>
     <div id="legend">
       <legend class="">Register Patient</legend>
@@ -22,23 +22,23 @@
       <label class="control-label"  for="age">Age</label>
       <span style="color:red" ng-show="patientForm.age.$pristine && patientForm.age.$invalid">*</span>
       <div class="controls">
-        <input type="number" ng-model="patient.age" name="age" placeholder="" class="form-control"  required>
+        <input type="number" ng-model="patient.age" name="age" placeholder="" class="form-control" required>
       </div>
     </div>
 
     <div class="control-group">
-      <label class="control-label"  for="doctor">Family Doctor</label>
-      <span style="color:red" ng-show="patientForm.doctor.$pristine && patientForm.doctor.$invalid">*</span>
+      <label class="control-label"  for="familyDoctor">Family Doctor</label>
+      <span style="color:red" ng-show="patientForm.familyDoctor.$pristine && patientForm.familyDoctor.$invalid">*</span>
       <div class="controls">
-        <select class="form-control" ng-model="patient.doctor" ng-options="doctor.fullname for doctor in doctorModel" required>
-          <option selected="selected">{{doctor.fullname}}</option>
+        <select class="form-control" id="familyDoctor" name="familyDoctor" ng-model="patient.familyDoctor" ng-options="doctor.fullname as doctor.fullname for doctor in doctorModel"required>
+          <option value=""></option>
         </select>
       </div>
     </div>
     <div class="control-group">
       <!-- Button -->
       <div class="controls">
-        <button class="btn btn-primary">Register</button>
+        <button class="btn btn-primary">Save</button>
       </div>
     </div>
   </fieldset>
