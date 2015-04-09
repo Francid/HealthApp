@@ -8,7 +8,7 @@ body {
 }
 
 .pad{
-	margin-left: 5px;
+	ma rgin-left: 5px;
 }
 
 table{
@@ -17,4 +17,8 @@ table{
 
 td,th{
 	text-align: center;
+}
+
+.btn{
+	white-space: normal;
 }

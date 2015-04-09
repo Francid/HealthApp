@@ -1,40 +1,43 @@
 <h2 class="text-center"> Patient List </h2>
-        <br>
-        <form>
+<br>
+<form>
     <div class="form-group">
       <div class="input-group">
         <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
         <input type="text" class="form-control" placeholder="Search for Patient or Doctor" ng-model="searchValue">
-      </div>      
-    </div>
-  </form>
-        <table id="patientList" class="table table-striped table-hover table-bordered">
-            <thead>
-                <tr>
-                    <th>
-                        <a ng-click="sortType = 'firstname'; sortReverse = !sortReverse">
-                            Patient First Name 
-                            <span ng-show="sortType == 'firstname' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
-                            <span ng-show="sortType == 'firstname' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
-                        </a>
-                    </th>
-                    <th>Patient Last Name</th>
-                    <th>Doctor Name</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="patient in filteredList = (patientList | filter:searchValue) | orderBy:sortType:sortReverse | startFrom:currentPage*pageSize | limitTo:pageSize">
-                <td>{{patient.firstname}}</td>
-                <td>{{patient.lastname}}</td>
-                <td>{{patient.familyDoctor}}</td>
-                <td><button class="btn btn-primary glyphicon glyphicon-edit" ng-click="selectedPatient(patient); enable()"> Edit</button><button class="btn btn-danger glyphicon glyphicon-remove pad" ng-click="deletePatient(patient)"> Delete</button></td>
+    </div>      
+</div>
+</form>
+<table id="patientList" class="table table-striped table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>
+                <a ng-click="sortType = 'firstname'; sortReverse = !sortReverse">
+                    Patient First Name 
+                    <span ng-show="sortType == 'firstname' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span>
+                    <span ng-show="sortType == 'firstname' && sortReverse" class="glyphicon glyphicon-chevron-up"></span>
+                </a>
+            </th>
+            <th>Patient Last Name</th>
+            <th>Doctor Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="patient in filteredList = (patientList | filter:searchValue) | orderBy:sortType:sortReverse | startFrom:currentPage*pageSize | limitTo:pageSize">
+            <td>{{patient.firstname}}</td>
+            <td>{{patient.lastname}}</td>
+            <td>{{patient.familyDoctor}}</td>
+            <td>
+                <button class="btn-block btn btn-primary glyphicon glyphicon-edit" ng-click="selectedPatient(patient); enable()"> Edit</button>
+                <button class="btn-block btn btn-danger glyphicon glyphicon-remove pad" ng-click="deletePatient(patient)"> Delete</button>
+            </td>
             </tr>
         </tbody>
-        </table>
+    </table>
 
-        <div class="row">
-            <div class="col-md-3 col-md-offset-5">
+    <div class="row">
+        <div class="col-md-3 col-md-offset-5">
             <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1" class="btn btn-primary">
                 Previous
             </button>
@@ -43,12 +46,12 @@
                 Next
             </button>
         </div>
-        </div>
-        <br />
-        <div>
-            <a href="#patientdetails">
-                <button class="btn btn-primary btn-lg">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Patient
-                </button>
-            </a>
-        </div>
+    </div>
+    <br />
+    <div>
+        <a href="#patientdetails">
+            <button class="btn btn-primary btn-lg">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Patient
+            </button>
+        </a>
+    </div>
