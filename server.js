@@ -9,7 +9,7 @@ var Patient = require('./models/Patient')
 var url = require('url')
 
 var app = express()
-mongoose.connect('mongodb://localhost:27017/test')
+mongoose.connect('mongodb://luke:luke@ds033617.mongolab.com:33617/comp308-patientdatabase')
 
 
 app.use(express.static(__dirname + '/public/stylesheets/'))
